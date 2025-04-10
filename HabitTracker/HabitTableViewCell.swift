@@ -25,13 +25,13 @@ class HabitTableViewCell: UITableViewCell {
         // Alışkanlık ismi için label ekliyoruz
         habitLabel = UILabel()
         habitLabel.textColor = .white
-        habitLabel.font = UIFont.systemFont(ofSize: 16)
+        habitLabel.font = UIFont.systemFont(ofSize: 18)
         habitLabel.translatesAutoresizingMaskIntoConstraints = false
 
         // Checkbox ve Label ekliyoruz
         contentView.addSubview(checkBoxButton)
         contentView.addSubview(habitLabel)
-        
+        contentView.backgroundColor = .white
         /*// SnapKit ile constraint ekliyoruz
         checkBoxButton.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(15) // Sol kenara 15 px mesafe
@@ -49,16 +49,16 @@ class HabitTableViewCell: UITableViewCell {
             checkBoxButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 10),
             checkBoxButton.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 5),
             checkBoxButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 5),
-            checkBoxButton.widthAnchor.constraint(equalToConstant: 30),
-            checkBoxButton.heightAnchor.constraint(equalToConstant: 30)
+            checkBoxButton.widthAnchor.constraint(equalToConstant: 50),
+            checkBoxButton.heightAnchor.constraint(equalToConstant: 50)
         ])
         NSLayoutConstraint.activate([
             habitLabel.leadingAnchor.constraint(equalTo: checkBoxButton.trailingAnchor, constant: 10),
             habitLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             habitLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 5),
-            habitLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 25),
-            habitLabel.widthAnchor.constraint(equalToConstant: 30),
-            habitLabel.heightAnchor.constraint(equalToConstant: 30)
+            habitLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            habitLabel.widthAnchor.constraint(equalToConstant: 50),
+            habitLabel.heightAnchor.constraint(equalToConstant: 50)
             
         ])
     }

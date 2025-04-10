@@ -4,7 +4,7 @@
 //
 //  Created by Mürşide Gökçe on 6.04.2025.
 //
-
+/*
 import UIKit
 import CoreData
 
@@ -77,5 +77,86 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
-}
+}*/
+import CoreData
+import UIKit
+import UserNotifications
 
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+
+    var window: UIWindow?
+
+    // Core Data stack
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "HabitTracker") // Model adı
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
+
+    var managedContext: NSManagedObjectContext {
+        return persistentContainer.viewContext
+    }
+
+    // Core Data context save
+    func saveContext() {
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+                print("Habit added successfully!")
+            } catch {
+                let nserror = error as NSError
+                print("Error saving habit: \(error)")
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+    }
+    
+
+
+    // Called when app will terminate
+    func applicationWillTerminate(_ application: UIApplication) {
+        saveContext()
+    }
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Request for notification permission
+        requestNotificationPermission()
+        
+        // Set UNUserNotificationCenter delegate
+        UNUserNotificationCenter.current().delegate = self
+        
+        return true
+    }
+
+    // Request notification permission from user
+    func requestNotificationPermission() {
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+            if granted {
+                print("Notification permission granted!")
+            } else {
+                print("Notification permission denied!")
+            }
+        }
+    }
+
+    // Foreground notification presentation
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        // Display notification while app is in the foreground
+        print("Notification received in foreground!")
+        completionHandler([.alert, .sound])  // Show alert and sound when notification comes in foreground
+    }
+
+    // Handling background notification response
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        // Handle notification tap action here (if needed)
+        print("Notification tapped!")
+        completionHandler()
+    }
+}

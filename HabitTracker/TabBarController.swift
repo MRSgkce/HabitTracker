@@ -14,7 +14,7 @@ class TabBarController: UITabBarController {
         
         // View Controller'ları oluşturuyoruz
         let anaVC = ViewController()
-        let secondVC = SecondViewController()
+        //let secondVC = SecondViewController()
         let ekleVC = HabitAddViewController()
         let analizVC = AnalizViewController()
    
@@ -23,33 +23,33 @@ class TabBarController: UITabBarController {
         
         // Delegate bağlantısını yapıyoruz
        
-            ekleVC.delegate = anaVC
+           // ekleVC.delegate = anaVC
         
 
         
         // Her ViewController'a bir tab bar item ekliyoruz
         // Her ViewController'a bir tab bar item ekliyoruz
         let image0 = UIImage(named: "home.png")!.withRenderingMode(.alwaysOriginal)
-        let resizedImage0 = resizeImage(image: image0, targetSize: CGSize(width: 50, height: 50))
-        anaVC.tabBarItem = UITabBarItem(title: "home", image: resizedImage0.withRenderingMode(.alwaysOriginal), tag: 0)
+        let resizedImage0 = resizeImage(image: image0, targetSize: CGSize(width: 60, height: 60))
+        anaVC.tabBarItem = UITabBarItem(title: "", image: resizedImage0.withRenderingMode(.alwaysOriginal), tag: 0)
         
         let image3 = UIImage(named: "analiz.png")!.withRenderingMode(.alwaysOriginal)
-        let resizedImage3 = resizeImage(image: image3, targetSize: CGSize(width: 50, height: 50))
-        analizVC.tabBarItem = UITabBarItem(title: "Analiz", image: resizedImage3.withRenderingMode(.alwaysOriginal), tag: 0)
+        let resizedImage3 = resizeImage(image: image3, targetSize: CGSize(width: 60, height: 60))
+        analizVC.tabBarItem = UITabBarItem(title: "", image: resizedImage3.withRenderingMode(.alwaysOriginal), tag: 0)
         
         let image2 = UIImage(named: "add.png")!.withRenderingMode(.alwaysOriginal)
-        let resizedImage2 = resizeImage(image: image2, targetSize: CGSize(width: 70, height: 70))
-        ekleVC.tabBarItem = UITabBarItem(title: "Yeni alışkanlık ekle", image: resizedImage2.withRenderingMode(.alwaysOriginal), tag: 1)
+        let resizedImage2 = resizeImage(image: image2, targetSize: CGSize(width: 80, height: 80))
+        ekleVC.tabBarItem = UITabBarItem(title: "", image: resizedImage2.withRenderingMode(.alwaysOriginal), tag: 1)
         
         // Resmi orijinal haliyle ekle
-        let image = UIImage(named: "motivation.png")!.withRenderingMode(.alwaysOriginal)
+        /*let image = UIImage(named: "motivation.png")!.withRenderingMode(.alwaysOriginal)
         let resizedImage = resizeImage(image: image, targetSize: CGSize(width: 50, height: 50))
-        secondVC.tabBarItem = UITabBarItem(title: "Motivation", image: resizedImage.withRenderingMode(.alwaysOriginal), tag: 2)
+        secondVC.tabBarItem = UITabBarItem(title: "Motivation", image: resizedImage.withRenderingMode(.alwaysOriginal), tag: 2)*/
         
        
         
         // TabBarController'a view controller'ları ekliyoruz
-        viewControllers = [anaVC, analizVC, ekleVC, secondVC]
+        viewControllers = [anaVC, ekleVC, analizVC]
         
         
     }
